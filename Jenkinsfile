@@ -19,16 +19,17 @@ node {
 	}
 	stage('Building image') {
         docker.withRegistry( 'https://' + registry, registryCredential ) {
-		    def buildName = registry + ":$BUILD_NUMBER"
-			newApp = 'chastinj15/'+ docker.build buildName
+		    def buildName = 'chastinj15/'+ registry + ":$BUILD_NUMBER"
+			newApp = docker.build buildName
 			newApp.push()
         }
 	}
+	/* The image is pushed from the stage above already...
 	stage('Registring image') {
         docker.withRegistry( 'chastinj15/' + registry, registryCredential ) {
     		newApp.push 'latest2'
         }
-	}
+	}*/
     stage('Removing image') {
         sh "docker rmi $registry:$BUILD_NUMBER"
         sh "docker rmi $registry:latest"
