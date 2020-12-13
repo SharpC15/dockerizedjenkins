@@ -24,15 +24,12 @@ node {
 			newApp.push()
         }
 	}
-	/* The image is pushed from the stage above already...
-	stage('Registring image') {
-        docker.withRegistry( 'chastinj15/' + registry, registryCredential ) {
-    		newApp.push 'latest2'
-        }
-	}*/
-    stage('Removing image') {
-        sh "docker rmi 'chastinj15/'+ $registry:$BUILD_NUMBER"
-        sh "docker rmi 'chastinj15/'+ $registry:latest"
+	/* The image is pushed from the stage above already...*/
+
+    stage('Clean up') {
+        registry = registry + '/chastinj15/' + registry
+        sh "docker rmi  $registry:$BUILD_NUMBER"
+        sh "docker rmi  $registry:latest"
     }
     
 }
