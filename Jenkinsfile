@@ -3,7 +3,7 @@ node {
 
     def newApp
     def registry = 'hub.docker.com'
-    def registryCredential = 'dockerhub'
+    def registryCredential = 'docker-hub'
 	
 	stage('Git') {
 		git 'https://github.com/SharpC15/dockerizedjenkins.git'
