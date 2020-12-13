@@ -19,8 +19,8 @@ node {
 	}
 	stage('Building image') {
         docker.withRegistry( 'https://' + registry, registryCredential ) {
-		    def buildName = 'chastinj15/'+ registry + ":$BUILD_NUMBER"
-			newApp = docker.build buildName
+		    def buildName = registry + ":$BUILD_NUMBER"
+			newApp = 'chastinj15/'+ docker.build buildName
 			newApp.push()
         }
 	}
