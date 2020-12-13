@@ -29,7 +29,7 @@ node {
     stage('Clean up') {
         registry = registry + '/chastinj15/' + registry
         sh "docker rmi  $registry:$BUILD_NUMBER"
-        sh "docker rmi  $registry:latest"
+       /*not latest sh "docker rmi  $registry:latest" present */
     }
     
 }
